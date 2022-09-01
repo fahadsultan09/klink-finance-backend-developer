@@ -1,14 +1,10 @@
 const express = require('express');
+const bodyParser = require("body-parser");
+const Sequelize = require('sequelize');
 const app = express();
 const port = 3000;
 
-/*
- * Implement those controllers to retrieve the statistics 
- * as provided in the README file.
- * 
- *  - getStatistics         - retrieve the data directly from file
- *  - getStatisticsFromDB   - use a preferred database engine
- */
+app.use(bodyParser.json());
 const getStatistics = require('./controllers/getStatistics');
 const getStatisticsFromDB = require('./controllers/getStatisticsFromDB');
 
