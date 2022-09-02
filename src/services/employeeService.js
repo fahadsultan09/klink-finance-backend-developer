@@ -1,8 +1,8 @@
-import service from './service';
+const service = require('./service')
 class employeeService extends service {
     constructor(model) {
         super(model);
     }
 }
 
-export default employeeService;
+module.exports = employeeService

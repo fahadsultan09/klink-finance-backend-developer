@@ -1,16 +1,20 @@
+
 class Service {
     constructor(model) {
+        
         this.model = model;
         this.get = this.get.bind(this);
         this.insert = this.insert.bind(this);
         this.update = this.update.bind(this);
         this.delete = this.delete.bind(this);
+        
     }
 
-    async get() {
+    async get(query = {}) {
         try {
+            
             const response = await this.model.findAll();
-            console.log("****** response ****** ", response)
+            
             return {
                 error: false,
                 statusCode: 200,
@@ -61,7 +65,7 @@ class Service {
                     "Bank": Bank,
                 };
             });
-            console.log("==============================******====================")
+            
             return {
                 error: false,
                 statusCode: 202,
@@ -112,7 +116,7 @@ class Service {
                     "Bank": Bank,
                 };
             });
-            console.log("==============================******====================")
+            
             return {
                 error: false,
                 statusCode: 202,
@@ -154,4 +158,4 @@ class Service {
     }
 }
 
-export default Service;
+module.exports = Service
