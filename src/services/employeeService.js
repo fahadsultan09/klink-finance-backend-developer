@@ -5,9 +5,9 @@ class employeeService extends service {
     constructor(model) {
         super(model);
         this.model = model
-        this.fetchRecords = this.fetchRecords.bind(this);
+        this.fetchData = this.fetchData.bind(this);
     }
-    async fetchRecords() {
+    async fetchData() {
         const response = await this.model.findOne({
             include:
                 [
@@ -48,13 +48,27 @@ class employeeService extends service {
         //     ],
         //     group: ['employee.position']
         //   })
+        console.log("response ======================")
+        console.log("response ======================")
+        console.log("response ======================")
+        console.log("response ======================")
+        console.log("response ======================")
+        console.log("response ======================")
+        console.log("response ======================",response)
+        console.log("response ======================")
+        console.log("response ======================")
+        console.log("response ======================")
+        console.log("response ======================")
+        console.log("response ======================")
+        console.log("response ======================")
+        console.log("response ======================")
         return {
             error: false,
             statusCode: 200,
             data: response
         }
     }
-    async fetchRecords2() {
+    async fetchOutput() {
         const response = await employee.findAll({
             attributes:
                 [
