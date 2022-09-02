@@ -1,9 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
     const User = sequelize.define("user", {
         userId: {
-            type: DataTypes.UUID,
+            type: Sequelize.UUID,
             primaryKey: true,
-            defaultValue: DataTypes.UUIDV4,
+            defaultValue: Sequelize.UUIDV1,
             allowNull: false,
             autoIncrement: false,
         },
@@ -24,10 +24,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         registeredAt: {
             type: Sequelize.STRING(100),
-        },
-        position: {
-            type: Sequelize.STRING(100),
-        },
+        }
     }, {
         timestamps: false
     });
