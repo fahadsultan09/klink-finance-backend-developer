@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Employee = sequelize.define("employee", {
+    const Bank = sequelize.define("bank", {
         id: {
             type: Sequelize.UUID,
             primaryKey: true,
@@ -7,19 +7,16 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
             autoIncrement: false,
         },
-        position: {
+        iban: {
             type: Sequelize.STRING(100),
         },
-        salary: {
-            type: Sequelize.STRING(100),
-        },
-        crypto: {
+        bic: {
             type: Sequelize.STRING(100),
         }
     }, {
         timestamps: false
     });
 
-    return Employee;
+    return Bank;
 };
 

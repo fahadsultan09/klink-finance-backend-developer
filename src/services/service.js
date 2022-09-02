@@ -55,7 +55,7 @@ class Service {
                     "birthdate": payload.birthdate,
                     "registeredAt": payload.registeredAt,
                     "bankID": Bank.id,
-                    "employeeID": Employee.id
+                    "empID": Employee.id
                 }, { transaction: t });
 
 
@@ -106,7 +106,7 @@ class Service {
                     "birthdate": payload.birthdate,
                     "registeredAt": payload.registeredAt,
                     "bankID": Bank.id,
-                    "employeeID": Employee.id
+                    "empID": Employee.id
                 }, { transaction: t });
 
 
@@ -156,6 +156,7 @@ class Service {
         //     };
         // }
     }
+    
 }
 
 module.exports = Service

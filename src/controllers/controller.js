@@ -1,14 +1,10 @@
-// import validations from './validators/validations';
-// // import schema from './validators/schema.json';
-// // import configurationModel from '../../model/configurationModel';
-// // import { ConsoleTransportOptions } from 'winston/lib/winston/transports';
-// const CONFIG_URL_BUNDLE= config.topPicks.bundleUrl;
-// const CONFIG_URL_BUNDLE_EDIT= config.topPicks.bundleUrlEdit;
 class controller {
     constructor(service) {
 
         this.service = service;
         this.get = this.get.bind(this);
+        this.fetchRecords = this.fetchRecords.bind(this);
+        this.fetchRecords2 = this.fetchRecords2.bind(this);
         // this.insert = this.insert.bind(this);
         // this.update = this.update.bind(this);
         // this.delete = this.delete.bind(this);
@@ -18,15 +14,15 @@ class controller {
             responseCode: "200",
             message_en: "The transaction was completed successfully.",
             message_ur: "The transaction was completed successfully.",
-            data: []
+            data: {}
 
         };
         this.responseFailure = {
             success: false,
-            responseCode: "F01",
+            responseCode: "500",
             message_en: "Invalid Argument Passed.",
             message_ur: "Invalid Argument Passed.",
-            data: []
+            data: {}
         };
     }
 
@@ -34,8 +30,11 @@ class controller {
 
     async get(req, res) {
         try {
-
+            
             const getData = await this.service.get(req.query);
+            console.log("********************************************")
+            console.log(getData.data)
+            console.log("********************************************")
             this.response.data = getData.data;
             if (getData.error) return res.status(getData.statusCode).send(getData);
             return res.status(200).send(this.response);
@@ -101,6 +100,36 @@ class controller {
     //     if (deleteData.error) return res.status(deleteData.statusCode).send(deleteData);
     //     return res.status(202).send(this.response);
     // }
+
+    async fetchRecords(req, res) {
+        try {
+
+            const getData = await this.service.fetchRecords(req.query);
+            console.log("********************************************")
+            console.log(getData.data)
+            console.log("********************************************")
+            this.response.data = getData.data;
+            if (getData.error) return res.status(getData.statusCode).send(getData);
+            return res.status(200).send(this.response);
+        } catch (error) {
+            console.log("ERROR============================", error)
+        }
+    }
+    async fetchRecords2(req, res) {
+        try {
+
+            const getData = await this.service.fetchRecords2(req.query);
+            console.log("********************************************")
+            console.log(getData.data)
+            console.log("********************************************")
+            this.response.data = getData.data;
+            if (getData.error) return res.status(getData.statusCode).send(getData);
+            return res.status(200).send(this.response);
+        } catch (error) {
+            console.log("ERROR============================", error)
+        }
+    }
+
 }
 
 module.exports = controller
