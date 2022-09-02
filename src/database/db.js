@@ -16,24 +16,3 @@ db.sequelize = sequelize;
 db.user = require("../models/userModel")(sequelize, Sequelize);
 
 module.exports = db;
-
-
-// st env = require("./env.js");s
-
-// const Sequelize = require("sequelize");
-
-// const sequelize = new Sequelize(env.database, env.username, env.password, {
-//   host: env.host,
-//   dialect: env.dialect,
-//   operatorsAliases: false,
-// });
-
-// const db = {};
-
-// db.Sequelize = Sequelize;
-// db.sequelize = sequelize;
-
-// //Models
-// db.book = require("../model/book.model.js")(sequelize, Sequelize);
-
-// module.exports = db;

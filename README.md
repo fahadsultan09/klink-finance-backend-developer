@@ -1,4 +1,4 @@
-# Klink Backend Developer Coding Challenge
+<!-- # Klink Backend Developer Coding Challenge
 
 Welcome to the Klink backend coding challenge.
 
@@ -63,4 +63,12 @@ You can share the code on your GitHub private repository.
 
 Good luck! 
 
-If you have any questions about the assignment, please email us at [michal@klinkfinance.com](mailto:michal@klinkfinance.com).
+If you have any questions about the assignment, please email us at [michal@klinkfinance.com](mailto:michal@klinkfinance.com). -->
+
+
+npm i express sequelize mysql validator body-parser dotenv
+
+
+```
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -p 3306:3306 -d mysql:5.6
+```

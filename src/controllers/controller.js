@@ -6,7 +6,7 @@
 // const CONFIG_URL_BUNDLE_EDIT= config.topPicks.bundleUrlEdit;
 class controller {
     constructor(service) {
-        
+
         this.service = service;
         this.get = this.get.bind(this);
         // this.insert = this.insert.bind(this);
@@ -34,13 +34,13 @@ class controller {
 
     async get(req, res) {
         try {
-            
+
             const getData = await this.service.get(req.query);
             this.response.data = getData.data;
             if (getData.error) return res.status(getData.statusCode).send(getData);
             return res.status(200).send(this.response);
         } catch (error) {
-            console.log("ERROR============================",error)
+            console.log("ERROR============================", error)
         }
     }
 
