@@ -101,7 +101,7 @@ module.exports = (sequelize, Sequelize) => {
     });
 
     Employee.hasOne(User, {
-        foreignKey: "users_FK_1", // change column name
+        foreignKey: "employeeID", // change column name
         sourceKey: "id", // change the referenced column
         uniqueKey: "users_FK_1", // foreign key constraint name
         onDelete: "RESTRICT", // ON DELETE config

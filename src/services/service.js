@@ -12,9 +12,7 @@ class Service {
 
     async get(query = {}) {
         try {
-
             const response = await this.model.findAll();
-
             return {
                 error: false,
                 statusCode: 200,
