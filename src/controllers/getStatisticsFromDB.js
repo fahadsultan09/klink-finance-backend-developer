@@ -1,5 +1,4 @@
 const employeeController = require('./employeeController')
-const { map, createOutput } = require('./../common/utils/dataMappings')
 module.exports = async (req, res) => {
     let response = {
         "number_of_employees": "",
@@ -8,7 +7,19 @@ module.exports = async (req, res) => {
         "average_salary_by_position": {}
     }
 
-    const output = employeeController.getOutput(req,res)
+    const output = await employeeController.getOutput(req, res)
+    const {
+        "employee.number_of_employees": count,
+        "employee.sum_of_paid_salaries": sum,
+        "employee.average_salary": avg,
+        "average_salary_by_position": averageByPosition,
+    } = output.data
+
+    response.number_of_employees = count
+    response.sum_of_paid_salaries = sum
+    response.average_salary = avg
+    response.average_salary_by_position = averageByPosition
+    
     return res.status(200).send(response);
 
 };
