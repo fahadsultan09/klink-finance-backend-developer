@@ -1,6 +1,7 @@
 const controller = require('./controller');
 const employeeService = require('../services/employeeService');
 const db = require("../database/db");
+const { map, createOutput  , convertArrayToObject} = require('./../common/utils/dataMappings')
 
 const employeeServiceObj = new employeeService(db.user);
 
@@ -22,14 +23,12 @@ class employeeController extends controller {
     }
     async fetchData(req, res) {
         try {
-
             const getData = await this.service.fetchData(req.query);
             this.response.data = getData.data;
-            console.log("============== FETCH DATA ==============", getData.data)
             if (getData.error) return res.status(getData.statusCode).send(getData);
-            return res.status(200).send(this.response);
+            return getData.data;
         } catch (error) {
-            console.log("ERROR============================>>>>>>>>>>>>>", error)
+            
         }
     }
     async fetchOutput(req, res) {
@@ -38,23 +37,24 @@ class employeeController extends controller {
             const getData = await this.service.fetchOutput(req.query);
             this.response.data = getData.data;
             if (getData.error) return res.status(getData.statusCode).send(getData);
-            return res.status(200).send(this.response);
+            
+            return convertArrayToObject(getData.data, 'position','average_salary')
         } catch (error) {
-            console.log("ERROR============================", error)
+            
         }
     }
     async getOutput(req, res) {
         try {
-            const data = []
-            let output1 = await this.fetchData(req, res)
-            // let output2 = await this.fetchOutput(req, res)
-            console.log("============ map 1==============", output1)
-            // console.log("============ map 2==============",output2.data)
-            // const result = map(output2.data)
-            // console.log("result========>",result)
-            return data
+            let output = await this.fetchData(req, res)
+            let result = await this.fetchOutput(req, res);            
+            this.response.data = {
+                ...output,
+                "average_salary_by_position": result
+            }
+            
+            return this.response
         } catch (error) {
-            console.log("ERROR============================>", error)
+            
         }
     }
 }

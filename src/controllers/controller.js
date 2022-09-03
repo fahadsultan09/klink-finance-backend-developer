@@ -1,6 +1,5 @@
 class controller {
     constructor(service) {
-
         this.service = service;
         this.get = this.get.bind(this);
         this.insert = this.insert.bind(this);
@@ -24,19 +23,15 @@ class controller {
         };
     }
 
-
-
     async get(req, res) {
         try {
-
-            const getData = await this.service.get(req.query);
-            this.response.data = getData.data;
-            if (getData.error) return res.status(getData.statusCode).send(getData);
-            return res.status(200).send(this.response);
-
+            const getData = await this.service.get(req.query); // FETCH DATA
+            this.response.data = getData.data; // UPDATE RESPONSE OBJECT
+            if (getData.error) return res.status(getData.statusCode).send(getData); // RETURN IN CASE ERROR
+            return res.status(200).send(this.response); // RET ALL RECORDS
         } catch (error) {
 
-            console.log("ERROR============================", error)
+
         }
     }
 
