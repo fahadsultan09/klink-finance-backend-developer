@@ -1,4 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
+    // User SCHEMA DEFINED
     let User = sequelize.define("user", {
         userId: {
             type: Sequelize.UUID,
@@ -47,6 +48,7 @@ module.exports = (sequelize, Sequelize) => {
         timestamps: false
     });
 
+    // Bank SCHEMA DEFINED
     let Bank = sequelize.define("bank", {
         id: {
             type: Sequelize.UUID,
@@ -65,6 +67,7 @@ module.exports = (sequelize, Sequelize) => {
         timestamps: false
     });
 
+    // EMPLOYEE SCHEMA DEFINED
     let Employee = sequelize.define("employee", {
         id: {
             type: Sequelize.UUID,
@@ -86,6 +89,8 @@ module.exports = (sequelize, Sequelize) => {
         timestamps: false
     });
 
+    ///----------Models - Association Defined --------------///
+
     Bank.hasOne(User, {
         foreignKey: "bankID", // change column name
         sourceKey: "id", // change the referenced column
@@ -106,34 +111,6 @@ module.exports = (sequelize, Sequelize) => {
 
     User.belongsTo(Employee)
     User.belongsTo(Bank)
-
-    // User.associate = function(models) {
-    //     User.hasOne(models.Bank, {
-    //       foreignKey: 'bankID',
-    //       as: 'bankID'
-    //     });
-    // };
-    // Bank.associate = function(models) {
-    //     Position.belongsTo(models.User, {
-    //         foreignKey: 'bankID',
-    //         as: 'bankID2',
-    //         onDelete: 'CASCADE'
-    //     });
-    // };
-    // User.associate = function(models) {
-    //     console
-    //     User.hasOne(models.employee, {
-    //       foreignKey: 'empID',
-    //       as: 'empID'
-    //     });
-    // };
-    // Employee.associate = function(models) {
-    //     Employee.belongsTo(models.User, {
-    //         foreignKey: 'empID',
-    //         as: 'empID',
-    //         onDelete: 'CASCADE'
-    //     });
-    // };
 
     return [User, Bank, Employee];
 };
