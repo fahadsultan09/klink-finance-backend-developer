@@ -2,14 +2,16 @@
 
 module.exports = {
 
-    map: (data = []) => {
-        for (let elem of data) {
-            console.log("==============>",elem)
-        }
+    date : (date) => new Date(date).toDateString(),
 
-        return data
+    convertArrayToObject: (array, key1 , key2) => {
+        const initialValue = {};
+        return array.reduce((obj, item) => { 
+            return {
+                ...obj,
+                [item[key1]]: item[key2],
+            };
+        }, initialValue);
     },
-    createOject: () => {
 
-    }
 }

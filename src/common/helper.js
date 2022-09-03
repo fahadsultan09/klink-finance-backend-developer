@@ -5,7 +5,9 @@ module.exports =
     average: (sum, count) => sum / count,
     averageByPosition: (data = []) => {
         const grouped = data.reduce((curr, acc) => {
+            
             const { position, salary: { amount: amount } } = acc
+
             if (!curr[`${position}`]) {
                 curr[`${position}`] = [];
             }
