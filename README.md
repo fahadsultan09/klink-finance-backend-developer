@@ -27,7 +27,7 @@ To create a mySQL database , i am using Docker for that.
 use the following docker command(assuming Docker is already installed) : 
 
 ```
-docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=main -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -p 3306:3306 -d mysql:5.6
+ docker run --name mysql-klink-finance -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=main -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -p 3306:3306 -d mysql:5.6
 ```
 
 To connect the database , You can use any Database Management Tool for MySQL i.e MySQL Workbench , phpMyAdmin
