@@ -1,4 +1,4 @@
-<!-- # Klink Backend Developer Coding Challenge
+# Klink Backend Developer Coding Challenge
 
 Welcome to the Klink backend coding challenge.
 
@@ -23,52 +23,58 @@ To start the web application, use the following command.
 ```
 npm run start
 ```
-
-## Assignment goals
-
-Once the data is generated, follow the comments in the file `src/app.js`.
-
-The generated data is placed in `data/payroll.json`.
-
-1. Create the controller that aggregates data from the JSON file and returns them in the following format.
-
-```jsonc
-{
-    "number_of_employees": "",        // number of employees in the data set
-    "sum_of_paid_salaries": "",       // sum of the salaries listed across the data set
-    "average_salary": "",             // average salary of all employees
-    "average_salary_by_position": {   // average salary aggregated by position
-        "Associate": "",
-        "Specialist": "",
-        "Executive": "",
-        // and so on, for all position types
-    }
-}
-```
-
-2. Create a database to calculate the data above using the database engine
-  - Make sure the data aggregation is done through the database and it works on a larger dataset. Define a schema that is suitable for that project
-  - You can use any database and library you find yourself comfortable with, i.e. SQLite with Knex or MySQL with Sequelize
-  - The response JSON format should be identical to the first point
-
-Please make sure that the commit history is available in your submitted repository.
-
-## Submitting results
-
-Please create a local git repository and push your changes there. Once finished, share the repo online and please send us the link.
-
-You can share the code on your GitHub private repository.
-
-## Final words
-
-Good luck! 
-
-If you have any questions about the assignment, please email us at [michal@klinkfinance.com](mailto:michal@klinkfinance.com). -->
-
-
-npm i express sequelize mysql validator body-parser dotenv
-
+To create a mySQL database , i am using Docker for that. 
+use the following docker command(assuming Docker is already installed) : 
 
 ```
-docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -p 3306:3306 -d mysql:5.6
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=main -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -p 3306:3306 -d mysql:5.6
 ```
+
+To connect the database , You can use any Database Management Tool for MySQL i.e MySQL Workbench , phpMyAdmin
+I used "DBeaver" for that.
+
+To create the DDL , use the following commands :
+
+```
+-- main.banks definition
+
+CREATE TABLE `banks` (
+  `id` varchar(100) NOT NULL,
+  `iban` varchar(100) NOT NULL,
+  `bic` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- main.employees definition
+
+CREATE TABLE `employees` (
+  `id` varchar(100) NOT NULL,
+  `position` varchar(100) NOT NULL,
+  `salary` varchar(100) NOT NULL,
+  `crypto` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- main.users definition
+
+CREATE TABLE `users` (
+  `userid` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `avatar` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `birthdate` varchar(100) NOT NULL,
+  `registeredAt` varchar(100) NOT NULL,
+  `employeeID` varchar(100) NOT NULL,
+  `bankID` varchar(100) NOT NULL,
+  PRIMARY KEY (`userid`),
+  KEY `bankID` (`bankID`),
+  KEY `employeeID` (`employeeID`),
+  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`bankID`) REFERENCES `banks` (`id`),
+  CONSTRAINT `users_ibfk_2` FOREIGN KEY (`employeeID`) REFERENCES `employees` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
+
+Now you can use , the postman collection attached in the root folder to call the routes.
